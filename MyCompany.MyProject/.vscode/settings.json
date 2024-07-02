@@ -1,0 +1,5 @@
+{
+  "typescript.tsdk": "MyCompany.MyProject.Web\\node_modules\\typescript\\lib",
+  "editor.formatOnSave": true,
+  "cSpell.words": ["Vite", "unplugin", "iconsets", "viewmodels", "composables"]
+}

@@ -21,51 +21,51 @@ using System.Threading.Tasks;
 
 namespace MyCompany.MyProject.Web.Api
 {
-    [Route("api/Widget")]
+    [Route("api/TriviaQuestion")]
     [Authorize]
     [ServiceFilter(typeof(IApiActionFilter))]
-    public partial class WidgetController
-        : BaseApiController<MyCompany.MyProject.Data.Models.Widget, WidgetDtoGen, MyCompany.MyProject.Data.AppDbContext>
+    public partial class TriviaQuestionController
+        : BaseApiController<MyCompany.MyProject.Data.Models.TriviaQuestion, TriviaQuestionDtoGen, MyCompany.MyProject.Data.AppDbContext>
     {
-        public WidgetController(CrudContext<MyCompany.MyProject.Data.AppDbContext> context) : base(context)
+        public TriviaQuestionController(CrudContext<MyCompany.MyProject.Data.AppDbContext> context) : base(context)
         {
-            GeneratedForClassViewModel = context.ReflectionRepository.GetClassViewModel<MyCompany.MyProject.Data.Models.Widget>();
+            GeneratedForClassViewModel = context.ReflectionRepository.GetClassViewModel<MyCompany.MyProject.Data.Models.TriviaQuestion>();
         }
 
         [HttpGet("get/{id}")]
         [Authorize]
-        public virtual Task<ItemResult<WidgetDtoGen>> Get(
+        public virtual Task<ItemResult<TriviaQuestionDtoGen>> Get(
             int id,
             DataSourceParameters parameters,
-            IDataSource<MyCompany.MyProject.Data.Models.Widget> dataSource)
+            IDataSource<MyCompany.MyProject.Data.Models.TriviaQuestion> dataSource)
             => GetImplementation(id, parameters, dataSource);
 
         [HttpGet("list")]
         [Authorize]
-        public virtual Task<ListResult<WidgetDtoGen>> List(
+        public virtual Task<ListResult<TriviaQuestionDtoGen>> List(
             ListParameters parameters,
-            IDataSource<MyCompany.MyProject.Data.Models.Widget> dataSource)
+            IDataSource<MyCompany.MyProject.Data.Models.TriviaQuestion> dataSource)
             => ListImplementation(parameters, dataSource);
 
         [HttpGet("count")]
         [Authorize]
         public virtual Task<ItemResult<int>> Count(
             FilterParameters parameters,
-            IDataSource<MyCompany.MyProject.Data.Models.Widget> dataSource)
+            IDataSource<MyCompany.MyProject.Data.Models.TriviaQuestion> dataSource)
             => CountImplementation(parameters, dataSource);
 
         [HttpPost("save")]
         [Authorize]
-        public virtual Task<ItemResult<WidgetDtoGen>> Save(
-            [FromForm] WidgetDtoGen dto,
+        public virtual Task<ItemResult<TriviaQuestionDtoGen>> Save(
+            [FromForm] TriviaQuestionDtoGen dto,
             [FromQuery] DataSourceParameters parameters,
-            IDataSource<MyCompany.MyProject.Data.Models.Widget> dataSource,
-            IBehaviors<MyCompany.MyProject.Data.Models.Widget> behaviors)
+            IDataSource<MyCompany.MyProject.Data.Models.TriviaQuestion> dataSource,
+            IBehaviors<MyCompany.MyProject.Data.Models.TriviaQuestion> behaviors)
             => SaveImplementation(dto, parameters, dataSource, behaviors);
 
         [HttpPost("bulkSave")]
         [Authorize]
-        public virtual Task<ItemResult<WidgetDtoGen>> BulkSave(
+        public virtual Task<ItemResult<TriviaQuestionDtoGen>> BulkSave(
             [FromBody] BulkSaveRequest dto,
             [FromQuery] DataSourceParameters parameters,
             [FromServices] IDataSourceFactory dataSourceFactory,
@@ -74,10 +74,10 @@ namespace MyCompany.MyProject.Web.Api
 
         [HttpPost("delete/{id}")]
         [Authorize]
-        public virtual Task<ItemResult<WidgetDtoGen>> Delete(
+        public virtual Task<ItemResult<TriviaQuestionDtoGen>> Delete(
             int id,
-            IBehaviors<MyCompany.MyProject.Data.Models.Widget> behaviors,
-            IDataSource<MyCompany.MyProject.Data.Models.Widget> dataSource)
+            IBehaviors<MyCompany.MyProject.Data.Models.TriviaQuestion> behaviors,
+            IDataSource<MyCompany.MyProject.Data.Models.TriviaQuestion> dataSource)
             => DeleteImplementation(id, new DataSourceParameters(), dataSource, behaviors);
     }
 }

@@ -6,7 +6,14 @@ namespace MyCompany.MyProject.Data;
 [Coalesce]
 public class AppDbContext : DbContext
 {
-    public DbSet<Widget> Widgets => Set<Widget>();
+    public DbSet<ApplicationUser> ApplicationUsers => Set<ApplicationUser>();
+    public DbSet<Organization> Organizations => Set<Organization>();
+    public DbSet<Event> Events => Set<Event>();
+    public DbSet<TriviaQuestion> TriviaQuestions => Set<TriviaQuestion>();
+    public DbSet<TriviaAnswer> TriviaAnswers => Set<TriviaAnswer>();
+    public DbSet<TriviaTag> TriviaTags => Set<TriviaTag>();
+    public DbSet<TriviaQuestionTag> TriviaQuestionTags => Set<TriviaQuestionTag>();
+    public DbSet<TriviaGuess> TriviaGuess => Set<TriviaGuess>();
 
     public AppDbContext() { }
 

@@ -9,4 +9,7 @@ public class TriviaQuestion : EventBase
     public required string Text { get; set; }
 
     public ICollection<TriviaAnswer> Answers { get; set; } = [];
+
+    [ManyToMany(nameof(TriviaQuestionTag.TriviaTag))]
+    public ICollection<TriviaQuestionTag> QuestionTags { get; set; } = [];
 }

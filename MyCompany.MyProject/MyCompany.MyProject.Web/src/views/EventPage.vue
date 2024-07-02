@@ -3,5 +3,10 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ eventId: string }>();
+import { EventViewModel } from "@/viewmodels.g";
+
+const props = defineProps<{ eventId: string }>();
+
+const event = new EventViewModel();
+event.$load(props.eventId);
 </script>

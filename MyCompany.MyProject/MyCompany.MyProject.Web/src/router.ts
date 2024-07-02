@@ -13,7 +13,7 @@ export default createRouter({
       path: "/event-page/:eventId",
       name: "EventPage",
       component: () => import("./views/EventPage.vue"),
-      props: (r) => ({ eventId: r.params.id }),
+      props: (r) => ({ eventId: r.params.eventId }),
     },
     {
       path: "/admin",

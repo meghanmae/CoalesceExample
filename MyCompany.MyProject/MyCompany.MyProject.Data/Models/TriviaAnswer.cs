@@ -14,5 +14,4 @@ public class TriviaAnswer : EventBase
     [Required]
     public int TriviaQuestionId { get; set; }
     public TriviaQuestion? TriviaQuestion { get; set; }
-
 }

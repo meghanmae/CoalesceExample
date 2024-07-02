@@ -1,5 +1,4 @@
 
-using MyCompany.MyProject.Web.Models;
 using IntelliTect.Coalesce;
 using IntelliTect.Coalesce.Api;
 using IntelliTect.Coalesce.Api.Behaviors;
@@ -12,6 +11,7 @@ using IntelliTect.Coalesce.TypeDefinition;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MyCompany.MyProject.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

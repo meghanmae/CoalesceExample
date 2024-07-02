@@ -26,6 +26,8 @@ export class Widget {
     return mapToModel(data || {}, metadata.Widget) 
   }
   
+  static [Symbol.hasInstance](x: any) { return x?.$metadata === metadata.Widget; }
+  
   /** Instantiate a new Widget, optionally basing it on the given data. */
   constructor(data?: Partial<Widget> | {[k: string]: any}) {
     Object.assign(this, Widget.map(data || {}));

@@ -34,6 +34,7 @@ export interface Event extends Model<typeof metadata.Event> {
   name: string | null
   start: Date | null
   end: Date | null
+  questions: TriviaQuestion[] | null
   organizationId: string | null
   organization: Organization | null
 }
@@ -54,6 +55,14 @@ export class Event {
   /** Instantiate a new Event, optionally basing it on the given data. */
   constructor(data?: Partial<Event> | {[k: string]: any}) {
     Object.assign(this, Event.map(data || {}));
+  }
+}
+export namespace Event {
+  export namespace DataSources {
+    
+    export class EventWithOrgDataSource implements DataSource<typeof metadata.Event.dataSources.eventWithOrgDataSource> {
+      readonly $metadata = metadata.Event.dataSources.eventWithOrgDataSource
+    }
   }
 }
 
@@ -168,6 +177,19 @@ export class TriviaQuestion {
   /** Instantiate a new TriviaQuestion, optionally basing it on the given data. */
   constructor(data?: Partial<TriviaQuestion> | {[k: string]: any}) {
     Object.assign(this, TriviaQuestion.map(data || {}));
+  }
+}
+export namespace TriviaQuestion {
+  export namespace DataSources {
+    
+    export class TriviaQuestionsByEventDataSource implements DataSource<typeof metadata.TriviaQuestion.dataSources.triviaQuestionsByEventDataSource> {
+      readonly $metadata = metadata.TriviaQuestion.dataSources.triviaQuestionsByEventDataSource
+      eventId: string | null = null
+      
+      constructor(params?: Omit<Partial<TriviaQuestionsByEventDataSource>, '$metadata'>) {
+        if (params) Object.assign(this, params);
+      }
+    }
   }
 }
 

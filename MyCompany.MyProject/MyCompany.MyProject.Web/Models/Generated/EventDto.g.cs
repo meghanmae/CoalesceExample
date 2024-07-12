@@ -16,6 +16,7 @@ namespace MyCompany.MyProject.Web.Models
         private string _Name;
         private System.DateTimeOffset? _Start;
         private System.DateTimeOffset? _End;
+        private System.Collections.Generic.ICollection<MyCompany.MyProject.Web.Models.TriviaQuestionDtoGen> _Questions;
         private string _OrganizationId;
         private MyCompany.MyProject.Web.Models.OrganizationDtoGen _Organization;
 
@@ -38,6 +39,11 @@ namespace MyCompany.MyProject.Web.Models
         {
             get => _End;
             set { _End = value; Changed(nameof(End)); }
+        }
+        public System.Collections.Generic.ICollection<MyCompany.MyProject.Web.Models.TriviaQuestionDtoGen> Questions
+        {
+            get => _Questions;
+            set { _Questions = value; Changed(nameof(Questions)); }
         }
         public string OrganizationId
         {
@@ -63,6 +69,18 @@ namespace MyCompany.MyProject.Web.Models
             this.Start = obj.Start;
             this.End = obj.End;
             this.OrganizationId = obj.OrganizationId;
+            var propValQuestions = obj.Questions;
+            if (propValQuestions != null && (tree == null || tree[nameof(this.Questions)] != null))
+            {
+                this.Questions = propValQuestions
+                    .OrderBy(f => f.TriviaQuestionId)
+                    .Select(f => f.MapToDto<MyCompany.MyProject.Data.Models.TriviaQuestion, TriviaQuestionDtoGen>(context, tree?[nameof(this.Questions)])).ToList();
+            }
+            else if (propValQuestions == null && tree?[nameof(this.Questions)] != null)
+            {
+                this.Questions = new TriviaQuestionDtoGen[0];
+            }
+
             if (tree == null || tree[nameof(this.Organization)] != null)
                 this.Organization = obj.Organization.MapToDto<MyCompany.MyProject.Data.Models.Organization, OrganizationDtoGen>(context, tree?[nameof(this.Organization)]);
 

@@ -9,6 +9,8 @@
           <v-btn @click="goToEvent(event.eventId)" color="secondary">
             View Event
           </v-btn>
+
+          <v-btn @click="event.$delete()" color="error"> Delete </v-btn>
         </v-card>
       </v-col>
     </v-row>

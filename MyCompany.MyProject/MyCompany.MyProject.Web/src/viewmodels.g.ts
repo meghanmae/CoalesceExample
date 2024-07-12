@@ -31,10 +31,16 @@ export interface EventViewModel extends $models.Event {
   name: string | null;
   start: Date | null;
   end: Date | null;
+  questions: TriviaQuestionViewModel[] | null;
   organizationId: string | null;
   organization: OrganizationViewModel | null;
 }
 export class EventViewModel extends ViewModel<$models.Event, $apiClients.EventApiClient, string> implements $models.Event  {
+  
+  
+  public addToQuestions(initialData?: DeepPartial<$models.TriviaQuestion> | null) {
+    return this.$addChild('questions', initialData) as TriviaQuestionViewModel
+  }
   
   constructor(initialData?: DeepPartial<$models.Event> | null) {
     super($metadata.Event, new $apiClients.EventApiClient(), initialData)

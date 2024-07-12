@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using MyCompany.MyProject.Data.Models;
 
+[assembly: CoalesceConfiguration(NoAutoInclude = true)]
+
 namespace MyCompany.MyProject.Data;
 
 [Coalesce]

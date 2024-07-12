@@ -115,6 +115,22 @@ export const Event = domain.types.Event = {
         required: val => val != null || "End is required.",
       }
     },
+    questions: {
+      name: "questions",
+      displayName: "Questions",
+      type: "collection",
+      itemType: {
+        name: "$collectionItem",
+        displayName: "",
+        role: "value",
+        type: "model",
+        get typeDef() { return (domain.types.TriviaQuestion as ModelType) },
+      },
+      role: "collectionNavigation",
+      get foreignKey() { return (domain.types.TriviaQuestion as ModelType).props.eventId as ForeignKeyProperty },
+      get inverseNavigation() { return (domain.types.TriviaQuestion as ModelType).props.event as ModelReferenceNavigationProperty },
+      dontSerialize: true,
+    },
     organizationId: {
       name: "organizationId",
       displayName: "Organization Id",
@@ -142,6 +158,13 @@ export const Event = domain.types.Event = {
   methods: {
   },
   dataSources: {
+    eventWithOrgDataSource: {
+      type: "dataSource",
+      name: "EventWithOrgDataSource",
+      displayName: "Event With Org Data Source",
+      props: {
+      },
+    },
   },
 }
 export const Organization = domain.types.Organization = {
@@ -440,12 +463,26 @@ export const TriviaQuestion = domain.types.TriviaQuestion = {
       role: "referenceNavigation",
       get foreignKey() { return (domain.types.TriviaQuestion as ModelType).props.eventId as ForeignKeyProperty },
       get principalKey() { return (domain.types.Event as ModelType).props.eventId as PrimaryKeyProperty },
+      get inverseNavigation() { return (domain.types.Event as ModelType).props.questions as ModelCollectionNavigationProperty },
       dontSerialize: true,
     },
   },
   methods: {
   },
   dataSources: {
+    triviaQuestionsByEventDataSource: {
+      type: "dataSource",
+      name: "TriviaQuestionsByEventDataSource",
+      displayName: "Trivia Questions By Event Data Source",
+      props: {
+        eventId: {
+          name: "eventId",
+          displayName: "Event Id",
+          type: "string",
+          role: "value",
+        },
+      },
+    },
   },
 }
 export const TriviaQuestionTag = domain.types.TriviaQuestionTag = {
